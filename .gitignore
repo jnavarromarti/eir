@@ -1,0 +1,6 @@
+# Environment files - NEVER commit real credentials
+.env
+.env.production
+.env.staging
+.env.develop
+.env.local

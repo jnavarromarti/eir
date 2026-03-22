@@ -1,0 +1,47 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: src/docker/php/Dockerfile
+    container_name: eir-php
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - eir-network
+    depends_on:
+      - pgsql
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: eir-nginx
+    ports:
+      - "${DOCKER_NGINX_PORT:-8080}:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./src/docker/nginx/${NGINX_CONF:-develop.conf}:/etc/nginx/conf.d/default.conf
+    networks:
+      - eir-network
+    depends_on:
+      - php
+
+  pgsql:
+    image: postgres:16-alpine
+    container_name: eir-pgsql
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-eir_develop}
+      POSTGRES_USER: ${DB_USERNAME:-postgre}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-IMDUser2026}
+    volumes:
+      - eir-pgsql-data:/var/lib/postgresql/data
+    networks:
+      - eir-network
+
+networks:
+  eir-network:
+    driver: bridge
+
+volumes:
+  eir-pgsql-data:
+    driver: local

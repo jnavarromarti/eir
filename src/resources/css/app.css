@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.tsx';
+@source '../**/*.ts';
+
+@theme {
+  /* ─── Primary (Rosa corporativo) ─── */
+  --color-primary-50: #FEF5FA;
+  --color-primary-100: #FDE6F3;
+  --color-primary-200: #FBCCE7;
+  --color-primary-300: #F7A1D3;
+  --color-primary-400: #D451B1;
+  --color-primary-500: #BE3D9D;
+  --color-primary-600: #A33185;
+
+  /* ─── Secondary (Morado corporativo) ─── */
+  --color-secondary-50: #F6EEF8;
+  --color-secondary-100: #E8D5ED;
+  --color-secondary-200: #D3ADE0;
+  --color-secondary-300: #B47CC8;
+  --color-secondary-400: #8C3FA3;
+  --color-secondary-500: #6A1B7C;
+  --color-secondary-600: #4E1260;
+
+  /* ─── Accent (Gradiente cálido complementario) ─── */
+  --color-accent-50: #FFF8F0;
+  --color-accent-100: #FFEDD5;
+  --color-accent-200: #FED7AA;
+  --color-accent-300: #FDBA74;
+  --color-accent-400: #FB923C;
+  --color-accent-500: #F97316;
+  --color-accent-600: #EA580C;
+
+  /* ─── Surface & Neutral ─── */
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FAFBFC;
+  --color-surface-sunken: #F3F4F6;
+  --color-border: #E5E7EB;
+  --color-border-subtle: #F3F4F6;
+
+  /* ─── Estados citas ─── */
+  --color-status-scheduled: #3B82F6;
+  --color-status-confirmed: #8B5CF6;
+  --color-status-in-progress: #F59E0B;
+  --color-status-completed: #10B981;
+  --color-status-cancelled: #EF4444;
+  --color-status-no-show: #6B7280;
+
+  /* ─── Facturas ─── */
+  --color-invoice-draft: #6B7280;
+  --color-invoice-issued: #3B82F6;
+  --color-invoice-paid: #10B981;
+  --color-invoice-cancelled: #EF4444;
+
+  /* ─── Profesionales ─── */
+  --color-practitioner-1: #D451B1;
+  --color-practitioner-2: #3B82F6;
+  --color-practitioner-3: #10B981;
+  --color-practitioner-4: #F59E0B;
+  --color-practitioner-5: #8B5CF6;
+  --color-practitioner-6: #EF4444;
+  --color-practitioner-7: #06B6D4;
+
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  /* ─── Animaciones ─── */
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-slide-down: slide-down 0.2s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
+  }
+
+  /* ─── Form system ─── */
+  --animate-check-in: check-in 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-field-in: field-in 0.2s ease-out;
+  --animate-error-shake: error-shake 0.35s ease-out;
+
+  @keyframes check-in {
+    from { transform: scale(0.3) rotate(-15deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  @keyframes field-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-4px); }
+    40%      { transform: translateX(4px); }
+    60%      { transform: translateX(-3px); }
+    80%      { transform: translateX(3px); }
+  }
+}
+
+/* ─── Base ─── */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-sunken);
+  color: #1A1A2E;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.auth-scene-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 32%, transparent 88%);
+}
+
+.auth-node-float {
+  animation: auth-node-float 9s ease-in-out infinite;
+}
+
+@keyframes auth-node-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+/* ─── Skeleton shimmer utility ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-sunken) 25%,
+    #E5E7EB 50%,
+    var(--color-surface-sunken) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
